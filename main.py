@@ -52,12 +52,62 @@ def draw_x(brX,brY,name,size):
               )
     name = w.create_polygon(points)
 
+def draw_y(brX,brY,name,size):
+    half = size/2
+    offset = size/8
+    points = (brX,brY-(size-offset),
+              brX-offset,brY-size,
+              brX-half,brY-(half+offset),
+              brX-(size-offset),brY-size,
+              brX-size,brY-(size-offset),
+              brX-(half+offset),brY-half,
+              brX-size,brY-offset,
+              brX-(size-offset),brY
+              )
 
+    name = w.create_polygon(points)
+
+def draw_rect(brX,brY,name,size):
+    points = (brX,brY,
+              brX-size,brY,
+              brX-size,brY-(size/4),
+              brX,brY-(size/4)
+    )
+    name = w.create_polygon(points)
+
+
+def draw_equal(brX,brY,name,size):
+    half = size/2
+    offset = size/8
+    name1 = name + "a"
+    name2 = name + "b"
+    draw_rect(brX-(size/5),brY-(half/2),name1,size-(half-offset))
+    draw_rect(brX-(size/5),brY-(size*(2/3)),name2,size-(half-offset))
+
+def draw_minus(brX,brY,name,size):
+    half = size/2
+    offset = size/8
+    draw_rect(brX-offset,brY-(half-(offset/2)),name,size-(2*offset))
+
+def draw_rectV(brX,brY,name,size):
+    points = (brX,brY,
+              brX-(size/4),brY,
+              brX-(size/4),brY-size,
+              brX,brY-size
+    )
+    name = w.create_polygon(points)
+
+def draw_1(brX,brY,name,size):
+    half = size/2
+    offset = size/8
+    draw_rectV((brX-half)+offset,brY,name,size)
 
 draw_grid(curheight,curwidth,4.0,50)
-draw_x(200,200,"lol",150)
+draw_x(200,200,"lol",100)
+draw_equal(300,200,"eq",100)
+draw_y(400,200,"aName",100)
+draw_minus(500,200,"minu",100)
+draw_1(600,200,"uno",100)
 
-for x in range(5):
-  draw_x(400,x*100, "meme",50)
 
 root.mainloop()
